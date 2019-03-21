@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VoteActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/tv_vote_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            tools:text="标题" />
+
+        <TextView
+            android:id="@+id/tv_vote_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_vote_name"
+            android:layout_marginLeft="10dp"
+            tools:text="内容描述" />
+
+        <TextView
+            android:id="@+id/tv_vote_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/tv_vote_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:text="已参与12人"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="赞成" />
+
+        <RadioButton
+            android:id="@+id/rb_oppose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="反对" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_commit_vote"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="提交投票"
+        android:textColor="#fff" />
+
+</LinearLayout>
