@@ -26,8 +26,11 @@ public class VoteAdapter extends BaseAdapter<VoteEntity, BaseViewHolder> {
     TextView tvVoteContent;
     @BindView(R.id.tv_vote_time)
     TextView tvVoteTime;
-    @BindView(R.id.tv_vote_number)
-    TextView tvVoteNumber;
+    @BindView(R.id.tv_oppose_number)
+    TextView tvOpposeNumber;
+    @BindView(R.id.tv_support_number)
+    TextView tvSupportNumber;
+
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
@@ -44,8 +47,9 @@ public class VoteAdapter extends BaseAdapter<VoteEntity, BaseViewHolder> {
         ButterKnife.bind(this, myViewHolder.itemView);
         tvVoteName.setText(voteEntity.getVoteString());
         tvVoteContent.setText(voteEntity.getVoteContent());
-        tvVoteNumber.setText(voteEntity.getVoteCount() + "");
         tvVoteTime.setText(voteEntity.getCreatedAt());
+        tvOpposeNumber.setText(String.format("反对人数:%s", voteEntity.getOpposeCount()));
+        tvSupportNumber.setText(String.format("赞成人数:%s", voteEntity.getSupportCount()));
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

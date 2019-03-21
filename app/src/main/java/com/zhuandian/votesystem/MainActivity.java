@@ -47,7 +47,9 @@ public class MainActivity extends BaseActivity {
                     voteAdapter.setOnItemClickListener(new VoteAdapter.OnItemClickListener() {
                         @Override
                         public void onClick(VoteEntity voteEntity) {
-                            startActivity(new Intent(MainActivity.this,VoteActivity.class));
+                            Intent intent = new Intent(MainActivity.this, VoteActivity.class);
+                            intent.putExtra("entity",voteEntity);
+                            startActivity(intent);
                         }
                     });
                 }

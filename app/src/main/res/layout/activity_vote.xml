@@ -37,14 +37,24 @@
             android:layout_margin="10dp" />
 
         <TextView
-            android:id="@+id/tv_vote_number"
+            android:id="@+id/tv_oppose_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
-            android:text="已参与12人"
+            android:text="反对人数：12"
             android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_support_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/tv_oppose_number"
+            android:text="赞成人数：8"
+            android:textColor="@color/colorPrimary" />
     </RelativeLayout>
 
     <RadioGroup
@@ -58,6 +68,7 @@
             android:id="@+id/rb_support"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:text="赞成" />
 
         <RadioButton
@@ -66,6 +77,16 @@
             android:layout_height="wrap_content"
             android:text="反对" />
     </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/cb_anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:gravity="center"
+        android:text="是否匿名" />
 
     <TextView
         android:id="@+id/tv_commit_vote"

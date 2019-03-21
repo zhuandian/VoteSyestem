@@ -1,5 +1,7 @@
 package com.zhuandian.votesystem.entity;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -7,7 +9,7 @@ import cn.bmob.v3.BmobObject;
  * author：xiedong
  * date：2019/3/20
  */
-public class VoteEntity extends BmobObject {
+public class VoteEntity extends BmobObject implements Serializable {
     private String voteString;
     private String voteContent;
     private int voteCount;
