@@ -5,59 +5,42 @@
  "voteCount":"12",
  "anonymCountCount":"2",
  "supportCount":"10",
- "opposeCount":"2"
+ "opposeCount":"2",
+  "nameList" :["小红","小明","张三","李四"]
  },
  {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- },
- {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- },
- {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- },
- {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- },
- {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- },
- {
- "voteString":"天气投票",
- "voteContent":"今天是晴天吗？",
- "voteCount":"12",
- "anonymCountCount":"2",
- "supportCount":"10",
- "opposeCount":"2"
- }
+  "voteString":"天气投票",
+  "voteContent":"今天是晴天吗？",
+  "nameList" :""
 
+ },
 
-  
+// nameList
+ [
+  {
+   "name":"小红",
+   "count":"0"
+  },
+  {
+   "name":"小红",
+   "count":"0"
+  },
+  {
+   "name":"小刚",
+   "count":"0"
+  },
+  {
+   "name":"赵四",
+   "count":"0"
+  },
+  {
+   "name":"张三",
+   "count":"0"
+  },
+  {
+   "name":"大明",
+   "count":"0"
+  }
+ ]
 
- 
 ]

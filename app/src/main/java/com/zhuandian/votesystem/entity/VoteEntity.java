@@ -1,6 +1,7 @@
 package com.zhuandian.votesystem.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import cn.bmob.v3.BmobObject;
 
@@ -16,6 +17,15 @@ public class VoteEntity extends BmobObject implements Serializable {
     private int anonymCountCount;
     private int supportCount;
     private int opposeCount;
+    private List<String> nameList;
+
+    public List<String> getNameList() {
+        return nameList;
+    }
+
+    public void setNameList(List<String> nameList) {
+        this.nameList = nameList;
+    }
 
     public int getSupportCount() {
         return supportCount;

@@ -1,9 +1,12 @@
 package com.zhuandian.votesystem;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +24,13 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-public class VoteActivity extends BaseActivity {
+
+/**
+ * desc :普通投票页面
+ * author：xiedong
+ * date：2019/3/20
+ */
+public class SimpleVoteActivity extends BaseActivity {
 
 
     @BindView(R.id.tv_vote_name)
@@ -42,7 +51,8 @@ public class VoteActivity extends BaseActivity {
     TextView tvOpposeNumber;
     @BindView(R.id.tv_support_number)
     TextView tvSupportNumber;
-    private VoteEntity voteEntity;
+    @BindView(R.id.et_vote_name)
+    EditText etVoteName;
     private int voteState = 1;  // 1.赞成 2.反对
     private boolean isAnonymous = false;
 
@@ -53,12 +63,20 @@ public class VoteActivity extends BaseActivity {
 
     @Override
     protected void setUpView() {
-        voteEntity = ((VoteEntity) getIntent().getSerializableExtra("entity"));
-        updateVote(voteEntity);
         cbAnonymous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isAnonymous = isChecked;
+            }
+        });
+
+        BmobQuery<VoteEntity> query = new BmobQuery<>();
+        query.findObjects(new FindListener<VoteEntity>() {
+            @Override
+            public void done(List<VoteEntity> list, BmobException e) {
+                if (e == null) {
+                    updateVote(list.get(0));
+                }
             }
         });
     }
@@ -82,40 +100,51 @@ public class VoteActivity extends BaseActivity {
                 voteState = 2;
                 break;
             case R.id.tv_commit_vote:
-                updateVoteState();
+                if (TextUtils.isEmpty(etVoteName.getText().toString()))
+                    Toast.makeText(this, "请输入投票人名称...", Toast.LENGTH_SHORT).show();
+                else
+                    updateVoteState();
                 break;
         }
     }
 
     private void updateVoteState() {
         BmobQuery<VoteEntity> query = new BmobQuery<>();
-        query.addWhereEqualTo("objectId", voteEntity.getObjectId())
-                .findObjects(new FindListener<VoteEntity>() {
-                    @Override
-                    public void done(final List<VoteEntity> list, BmobException e) {
-                        VoteEntity voteEntity = list.get(0);
-                        if (voteState == 1) {
-                            voteEntity.setSupportCount(voteEntity.getSupportCount() + 1);
-                        } else if (voteState == 2) {
-                            voteEntity.setOpposeCount(voteEntity.getOpposeCount() + 1);
-                        }
-                        voteEntity.update(new UpdateListener() {
-                            @Override
-                            public void done(BmobException e) {
-                                if (e == null) {
-                                    updateVote(list.get(0));
-                                    Toast.makeText(VoteActivity.this, (isAnonymous ? "匿名 " : "") + "投" + (voteState == 1 ? "赞成" : "反对") + "成功...", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+        query.findObjects(new FindListener<VoteEntity>() {
+            @Override
+            public void done(final List<VoteEntity> list, BmobException e) {
+                boolean isAllowVote = false;//当前是否允许投票
+                VoteEntity voteEntity = list.get(0);
+                updateVote(voteEntity);
+                for (String name : voteEntity.getNameList()) {
+                    if (name.equals(etVoteName.getText().toString())) {
+                        isAllowVote = true;
                     }
-                });
+                }
+                if (isAllowVote) {
+                    if (voteState == 1) {
+                        voteEntity.setSupportCount(voteEntity.getSupportCount() + 1);
+                    } else if (voteState == 2) {
+                        voteEntity.setOpposeCount(voteEntity.getOpposeCount() + 1);
+                    }
+                    voteEntity.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                updateVote(list.get(0));
+                                Toast.makeText(SimpleVoteActivity.this, (isAnonymous ? "匿名 " : "") + "投" + (voteState == 1 ? "赞成" : "反对") + "成功...", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    new AlertDialog.Builder(SimpleVoteActivity.this)
+                            .setTitle("抱歉！")
+                            .setMessage("抱歉当前用户没有投票权限，请更换用户名后再投票")
+                            .create()
+                            .show();
+                }
+            }
+        });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

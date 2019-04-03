@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VoteActivity">
+    tools:context=".SimpleVoteActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,6 +87,15 @@
         android:checked="false"
         android:gravity="center"
         android:text="是否匿名" />
+
+    <EditText
+        android:id="@+id/et_vote_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="请输入当前投票人名称"
+        android:textColor="#999999"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_commit_vote"
