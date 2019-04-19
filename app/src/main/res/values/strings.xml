@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VoteSystem</string>
+    <string name="app_info">投票系统</string>
 </resources>
